@@ -8,7 +8,7 @@ class MerekModel extends Model
 {
     protected $table            = 'merek';
     protected $primaryKey       = 'id_merek';
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nama_merek', 'status'];
 
     public function getMerek($id = false)
     {
@@ -16,6 +16,11 @@ class MerekModel extends Model
             return $this->findAll();
         }
         return $this->where(['id_merek' => $id])->first();
+    }
+
+    public function getMerekActive()
+    {
+        return $this->where(['status' => 'Aktif'])->findAll();
     }
 
     public function insertMerek($data)

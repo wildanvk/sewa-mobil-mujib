@@ -18,6 +18,11 @@
                 </a>
             </li>
             <li class="">
+                <a class="nav-link" href="/admin/master/warna"><i class="fas fa-palette"></i>
+                    <span>Data Warna</span>
+                </a>
+            </li>
+            <li class="">
                 <a class="nav-link" href="/admin/master/mobil"><i class="fas fa-car"></i>
                     <span>Data Mobil</span>
                 </a>
