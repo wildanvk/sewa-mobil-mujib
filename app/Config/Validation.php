@@ -82,7 +82,7 @@ class Validation extends BaseConfig
         'tersedia' => 'required',
         'fitur_ac' => 'required',
         'fitur_tv' => 'required',
-        'gambar_mobil' => 'uploaded[gambar_produk]|mime_in[gambar_mobil,image/jpg,image/jpeg,image/png]|max_size[gambar_mobil,1024]|is_image[gambar_mobil]',
+        'gambar_mobil' => 'uploaded[gambar_mobil]|mime_in[gambar_mobil,image/jpg,image/jpeg,image/png]|max_size[gambar_mobil,1024]|is_image[gambar_mobil]',
     ];
 
     public $mobil_errors = [
@@ -122,6 +122,62 @@ class Validation extends BaseConfig
         ],
         'gambar_mobil' => [
             'uploaded' => 'Gambar mobil harus diisi!',
+            'mime_in' => 'Gambar mobil harus berformat jpg/jpeg/png!',
+            'max_size' => 'Ukuran gambar maksimal 1MB!',
+            'is_image' => 'File yang anda pilih bukan gambar!'
+        ]
+    ];
+
+    public $mobil_edit = [
+        'id_merek' => 'required',
+        'id_warna' => 'required',
+        'nama_mobil' => 'required',
+        'plat_nomor' => 'required',
+        'tahun' => 'required',
+        'harga_sewa' => 'required',
+        'denda' => 'required',
+        'status' => 'required',
+        'tersedia' => 'required',
+        'fitur_ac' => 'required',
+        'fitur_tv' => 'required',
+        'gambar_mobil' => 'mime_in[gambar_mobil,image/jpg,image/jpeg,image/png]|max_size[gambar_mobil,1024]|is_image[gambar_mobil]',
+    ];
+
+    public $mobil_edit_errors = [
+        'id_merek' => [
+            'required' => 'Merek harus diisi!',
+        ],
+        'id_warna' => [
+            'required' => 'Warna harus diisi!',
+        ],
+        'nama_mobil' => [
+            'required' => 'Nama mobil harus diisi!',
+        ],
+        'plat_nomor' => [
+            'required' => 'Plat nomor harus diisi!',
+        ],
+        'tahun' => [
+            'required' => 'Tahun harus diisi!',
+        ],
+        'harga_sewa' => [
+            'required' => 'Harga sewa harus diisi!',
+        ],
+        'denda' => [
+            'required' => 'Denda harus diisi!',
+        ],
+        'status' => [
+            'required' => 'Status harus diisi!',
+        ],
+        'tersedia' => [
+            'required' => 'Tersedia harus diisi!',
+        ],
+        'fitur_ac' => [
+            'required' => 'Fitur AC harus diisi!',
+        ],
+        'fitur_tv' => [
+            'required' => 'Fitur TV harus diisi!',
+        ],
+        'gambar_mobil' => [
             'mime_in' => 'Gambar mobil harus berformat jpg/jpeg/png!',
             'max_size' => 'Ukuran gambar maksimal 1MB!',
             'is_image' => 'File yang anda pilih bukan gambar!'

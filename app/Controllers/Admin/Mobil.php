@@ -90,4 +90,56 @@ class Mobil extends BaseController
 
         return view('admin/mobil/edit', $data);
     }
+
+    public function update()
+    {
+        $id_mobil = $this->request->getPost('id_mobil');
+        $validation = \Config\Services::validation();
+
+        $gambar_mobil = $this->request->getFile('gambar_mobil');
+        // Jika gambar tidak diubah
+        if ($gambar_mobil->getError() == 4) {
+            $nama_gambar = $this->request->getPost('gambar_mobil_lama');
+        } else {
+            // Beri nama random
+            $nama_gambar = $gambar_mobil->getRandomName();
+            // Hapus file gambar lama
+            unlink(ROOTPATH . 'public/uploads/mobil/' . $this->request->getPost('gambar_mobil_lama'));
+        }
+
+        $data = [
+            'id_mobil' => $id_mobil,
+            'id_merek' => $this->request->getPost('id_merek'),
+            'id_warna' => $this->request->getPost('id_warna'),
+            'nama_mobil' => $this->request->getPost('nama_mobil'),
+            'plat_nomor' => $this->request->getPost('plat_nomor'),
+            'tahun' => $this->request->getPost('tahun'),
+            'harga_sewa' => $this->request->getPost('harga_sewa'),
+            'denda' => $this->request->getPost('denda'),
+            'status' => $this->request->getPost('status'),
+            'tersedia' => $this->request->getPost('tersedia'),
+            'fitur_ac' => $this->request->getPost('fitur_ac'),
+            'fitur_tv' => $this->request->getPost('fitur_tv'),
+            'gambar_mobil' => $nama_gambar
+        ];
+
+        if ($validation->run($data, 'mobil_edit') == FALSE) {
+            return redirect()->to('/admin/master/mobil/edit/' . $data['id_mobil'])->withInput();
+        } else {
+            if (!$gambar_mobil->getError() == 4) {
+                $gambar_mobil->move(ROOTPATH . 'public/uploads/mobil', $nama_gambar);
+            }
+
+            $this->mobilModel->updateMobil($data, $id_mobil);
+            session()->setFlashdata('update', 'Data mobil berhasil diubah!');
+            return redirect()->to('/admin/master/mobil');
+        }
+    }
+
+    public function hapus($id)
+    {
+        $this->mobilModel->deleteMobil($id);
+        session()->setFlashdata('delete', 'Data mobil berhasil dihapus!');
+        return redirect()->to('/admin/master/mobil');
+    }
 }

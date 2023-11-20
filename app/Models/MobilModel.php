@@ -21,11 +21,23 @@ class MobilModel extends Model
                 ->getResultArray();
         }
         return $this->db->table('mobil')
+            ->select('merek.nama_merek, warna.warna, mobil.*')
             ->join('merek', 'merek.id_merek = mobil.id_merek')
             ->join('warna', 'warna.id_warna = mobil.id_warna')
             ->where(['id_mobil' => $id])
             ->get()
             ->getRowArray();
+    }
+
+    public function getMobilActive()
+    {
+        return $this->db->table('mobil')
+            ->select('merek.nama_merek, warna.warna, mobil.*')
+            ->join('merek', 'merek.id_merek = mobil.id_merek')
+            ->join('warna', 'warna.id_warna = mobil.id_warna')
+            ->where(['mobil.status' => 'Aktif'])
+            ->get()
+            ->getResultArray();
     }
 
     public function insertMobil($data)
