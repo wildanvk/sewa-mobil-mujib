@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2023 at 11:36 AM
+-- Generation Time: Nov 21, 2023 at 02:57 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `rental_mobil`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id_admin` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nama_admin` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama_admin`, `email`) VALUES
+(1, 'admin', 'admin', 'admin', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -77,7 +98,9 @@ CREATE TABLE `mobil` (
 --
 
 INSERT INTO `mobil` (`id_mobil`, `id_merek`, `id_warna`, `nama_mobil`, `plat_nomor`, `tahun`, `harga_sewa`, `denda`, `status`, `tersedia`, `fitur_ac`, `fitur_tv`, `gambar_mobil`) VALUES
-(1, 1, 1, 'Avanza', 'G 2020 FG', 2015, 200000, 50000, 'Aktif', 'Tersedia', 'Ada', 'Ada', '1700330725_8f8a6db2ccc801ef0381.jpeg');
+(1, 1, 1, 'Avanza', 'G 2020 FG', 2015, 200000, 50000, 'Aktif', 'Tersedia', 'Ada', 'Tidak Ada', '1700330725_8f8a6db2ccc801ef0381.jpeg'),
+(3, 1, 1, 'Yaris', 'G 2021 GH', 2019, 250000, 75000, 'Aktif', 'Tidak Tersedia', 'Ada', 'Ada', '1700413656_4ec5708c89e9ab672082.png'),
+(4, 14, 1, 'Xenia', 'G 2023', 2020, 300000, 75000, 'Aktif', 'Tersedia', 'Ada', 'Ada', '1700509705_f4e3acf422e99f71d7fc.jpeg');
 
 -- --------------------------------------------------------
 
@@ -107,6 +130,12 @@ INSERT INTO `warna` (`id_warna`, `warna`, `status`) VALUES
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id_admin`);
+
+--
 -- Indexes for table `merek`
 --
 ALTER TABLE `merek`
@@ -129,6 +158,12 @@ ALTER TABLE `warna`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `merek`
 --
 ALTER TABLE `merek`
@@ -138,7 +173,7 @@ ALTER TABLE `merek`
 -- AUTO_INCREMENT for table `mobil`
 --
 ALTER TABLE `mobil`
-  MODIFY `id_mobil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_mobil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `warna`
