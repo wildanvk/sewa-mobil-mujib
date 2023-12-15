@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 02:57 PM
+-- Generation Time: Dec 15, 2023 at 11:56 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -105,6 +105,30 @@ INSERT INTO `mobil` (`id_mobil`, `id_merek`, `id_warna`, `nama_mobil`, `plat_nom
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `nik` int(11) NOT NULL,
+  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telepon` varchar(255) NOT NULL,
+  `alamat` text NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `nama`, `nik`, `jenis_kelamin`, `email`, `telepon`, `alamat`, `password`) VALUES
+(3, 'Wildan Vinu Kananta', 2147483647, 'laki-laki', 'wildanvinukananta@gmail.com', '087771371419', 'JL. DHARMA BAKTI GG. 7 NO. 79B, Medono', '$2y$10$oRfuNCeHIcSHJboEcnxZceMgcqGNrUI6ab3c/UOVZtn0jwnh88M42');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `warna`
 --
 
@@ -148,6 +172,12 @@ ALTER TABLE `mobil`
   ADD PRIMARY KEY (`id_mobil`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `warna`
 --
 ALTER TABLE `warna`
@@ -174,6 +204,12 @@ ALTER TABLE `merek`
 --
 ALTER TABLE `mobil`
   MODIFY `id_mobil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `warna`
