@@ -23,4 +23,14 @@ class Rent extends BaseController
 
         return view('user/rent/index', $data);
     }
+
+    public function detail($id)
+    {
+        $data = [
+            'title' => 'Detail',
+            'mobil' => $this->mobilModel->getMobil($id)
+        ];
+
+        return view('user/rent/detail', $data);
+    }
 }

@@ -7,9 +7,14 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->get('/', 'User\Rent::index');
-$routes->get('admin', 'Admin\Auth::index');
+
+$routes->group('rent', function ($routes) {
+    $routes->get('/', 'User\Rent::index');
+    $routes->get('detail/(:num)', 'User\Rent::detail/$1');
+});
 
 $routes->group('admin', function ($routes) {
+    $routes->get('/', 'Admin\Auth::index');
     $routes->get('dashboard', 'Admin\Dashboard::index');
 
     $routes->group('auth', function ($routes) {

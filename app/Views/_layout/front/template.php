@@ -13,17 +13,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="<?= base_url('front') ?>/css/styles.css" rel="stylesheet" />
+
 </head>
 
 <body>
-    <!-- Navigation-->
-    <?= $this->include('_layout/front/navbar') ?>
+    <main class="d-flex flex-column vh-100">
+        <!-- Navigation-->
+        <?= $this->include('_layout/front/navbar') ?>
 
-    <!-- Section-->
-    <?= $this->renderSection('content') ?>
+        <!-- Section-->
+        <?= $this->renderSection('content') ?>
 
-    <!-- Footer-->
-    <?= $this->include('_layout/front/footer') ?>
+        <!-- Footer-->
+        <?= $this->include('_layout/front/footer') ?>
+    </main>
 
 
     <!-- Bootstrap core JS-->
