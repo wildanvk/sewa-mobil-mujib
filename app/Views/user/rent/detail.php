@@ -40,22 +40,56 @@
                         <tr>
                             <th>AC</th>
                             <td>:</td>
-                            <td><?= $mobil['fitur_ac'] ?></td>
+                            <td>
+                                <?php if ($mobil['fitur_ac'] == 'Ada') { ?>
+                                <span class="badge text-bg-success">
+                                    Ada
+                                </span>
+                                <?php } else { ?>
+                                <span class="badge text-bg-danger">
+                                    Tidak Ada
+                                </span>
+                                <?php } ?>
+                            </td>
                         </tr>
                         <tr>
                             <th>TV</th>
                             <td>:</td>
-                            <td><?= $mobil['fitur_tv'] ?></td>
+                            <td>
+                                <?php if ($mobil['fitur_tv'] == 'Ada') { ?>
+                                <span class="badge text-bg-success">
+                                    Ada
+                                </span>
+                                <?php } else { ?>
+                                <span class="badge text-bg-danger">
+                                    Tidak Ada
+                                </span>
+                                <?php } ?>
+                            </td>
                         </tr>
                         <tr>
                             <th>Tersedia</th>
                             <td>:</td>
-                            <td><?= $mobil['tersedia'] ?></td>
+                            <td>
+                                <?php if ($mobil['tersedia'] == 'Tersedia') { ?>
+                                <span class="badge text-bg-success">
+                                    Tersedia
+                                </span>
+                                <?php } else { ?>
+                                <span class="badge text-bg-danger">
+                                    Tidak Tersedia
+                                </span>
+                                <?php } ?>
+                            </td>
                         </tr>
 
                     </table>
                     <div class="d-flex gap-2">
-                        <a class="btn btn-primary mt-auto" aria-disabled="true" href="">Sewa</a>
+                        <?php if ($mobil['tersedia'] == 'Tersedia') { ?>
+                        <a class="btn btn-primary mt-auto" aria-disabled="true" href="#">Sewa</a>
+                        <?php } else { ?>
+                        <a class="btn btn-secondary disabled mt-auto">Tidak tersedia</a>
+                        <?php } ?>
                         <a class="btn btn-outline-dark" type="button" href="/">
                             Kembali
                         </a>
