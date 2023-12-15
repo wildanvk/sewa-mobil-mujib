@@ -183,4 +183,47 @@ class Validation extends BaseConfig
             'is_image' => 'File yang anda pilih bukan gambar!'
         ]
     ];
+
+    public $user = [
+        'nama' => 'required',
+        'nik' => 'required|is_unique[user.nik]|min_length[16]|max_length[16]|numeric',
+        'jenis_kelamin' => 'required',
+        'email' => 'required|valid_email|is_unique[user.email]',
+        'telepon' => 'required',
+        'alamat' => 'required',
+        'password' => 'required|min_length[8]',
+
+    ];
+
+    public $user_errors = [
+        'nama' => [
+            'required' => 'Nama harus diisi!',
+        ],
+        'nik' => [
+            'required' => 'NIK harus diisi!',
+            'is_unique' => 'NIK sudah terdaftar!',
+            'min_length' => 'NIK harus 16 karakter!',
+            'max_length' => 'NIK harus 16 karakter!',
+            'numeric' => 'NIK harus berupa angka!'
+        ],
+        'jenis_kelamin' => [
+            'required' => 'Jenis kelamin harus diisi!',
+        ],
+        'email' => [
+            'required' => 'Email harus diisi!',
+            'valid_email' => 'Email tidak valid!',
+            'is_unique' => 'Email sudah terdaftar!'
+        ],
+        'telepon' => [
+            'required' => 'No. telepon harus diisi!',
+        ],
+        'alamat' => [
+            'required' => 'Alamat harus diisi!',
+        ],
+        'password' => [
+            'required' => 'Password harus diisi!',
+            'min_length' => 'Password minimal 8 karakter!'
+        ],
+
+    ];
 }

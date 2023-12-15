@@ -44,3 +44,11 @@ $routes->group('admin', function ($routes) {
         $routes->get('mobil/hapus/(:num)', 'Admin\Mobil::hapus/$1');
     });
 });
+
+$routes->group('user', function ($routes) {
+    $routes->get('login', 'User\Auth::index');
+    $routes->post('verification', 'User\Auth::auth');
+    $routes->get('logout', 'User\Auth::logout');
+    $routes->get('register', 'User\Auth::Register');
+    $routes->post('create', 'User\Auth::createAccount');
+});

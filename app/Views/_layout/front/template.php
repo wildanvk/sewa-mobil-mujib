@@ -28,8 +28,23 @@
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS Libraies -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Core theme JS-->
     <script src="<?= base_url('front') ?>/js/scripts.js"></script>
+    <script>
+    <?php if (session()->getFlashdata('logout')) { ?>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil Logout',
+        text: '<?= session()->getFlashdata('logout') ?>',
+        showConfirmButton: true,
+        timer: 3000
+    })
+    <?php } ?>
+    </script>
 </body>
 
 </html>
