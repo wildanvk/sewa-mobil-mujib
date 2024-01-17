@@ -70,6 +70,53 @@ class Validation extends BaseConfig
         ]
     ];
 
+    public $rekening = [
+        'nama_bank' => 'required',
+        'no_rekening' => 'required|is_unique[rekening.no_rekening]|numeric',
+        'atas_nama' => 'required',
+        'status' => 'required'
+    ];
+
+    public $rekening_errors = [
+        'nama_bank' => [
+            'required' => 'Nama bank harus diisi!',
+        ],
+        'no_rekening' => [
+            'required' => 'No. rekening harus diisi!',
+            'is_unique' => 'No. rekening sudah terdaftar!',
+            'numeric' => 'No. rekening harus berupa angka!'
+        ],
+        'atas_nama' => [
+            'required' => 'Atas nama harus diisi!',
+        ],
+        'status' => [
+            'required' => 'Status harus diisi!'
+        ]
+    ];
+
+    public $rekening_update = [
+        'nama_bank' => 'required',
+        'no_rekening' => 'required|numeric',
+        'atas_nama' => 'required',
+        'status' => 'required'
+    ];
+
+    public $rekening_update_errors = [
+        'nama_bank' => [
+            'required' => 'Nama bank harus diisi!',
+        ],
+        'no_rekening' => [
+            'required' => 'No. rekening harus diisi!',
+            'numeric' => 'No. rekening harus berupa angka!'
+        ],
+        'atas_nama' => [
+            'required' => 'Atas nama harus diisi!',
+        ],
+        'status' => [
+            'required' => 'Status harus diisi!'
+        ]
+    ];
+
     public $mobil = [
         'id_merek' => 'required',
         'id_warna' => 'required',
@@ -224,6 +271,49 @@ class Validation extends BaseConfig
             'required' => 'Password harus diisi!',
             'min_length' => 'Password minimal 8 karakter!'
         ],
+    ];
 
+    public $transaksi = [
+        'id_mobil' => 'required',
+        'tanggal_sewa' => 'required|valid_date[Y-m-d]',
+        'tanggal_kembali' => 'required|valid_date[Y-m-d]',
+    ];
+
+    public $transaksi_errors = [
+        'id_mobil' => [
+            'required' => 'Mobil harus diisi!',
+        ],
+        'tanggal_sewa' => [
+            'required' => 'Tanggal sewa harus diisi!',
+            'valid_date' => 'Tanggal sewa harus valid!'
+        ],
+        'tanggal_kembali' => [
+            'required' => 'Tanggal kembali harus diisi!',
+            'valid_date' => 'Tanggal kembali harus valid!'
+        ],
+    ];
+
+    public $pembayaran = [
+        'id_transaksi' => 'required',
+        'bukti_pembayaran' => 'uploaded[bukti_pembayaran]|mime_in[bukti_pembayaran,image/jpg,image/jpeg,image/png]|max_size[bukti_pembayaran,2048]|is_image[bukti_pembayaran]',
+        'foto_ktp' => 'uploaded[foto_ktp]|mime_in[foto_ktp,image/jpg,image/jpeg,image/png]|max_size[foto_ktp,2048]|is_image[foto_ktp]',
+    ];
+
+    public $pembayaran_errors = [
+        'id_transaksi' => [
+            'required' => 'ID transaksi harus diisi!',
+        ],
+        'bukti_pembayaran' => [
+            'uploaded' => 'Bukti pembayaran harus diisi!',
+            'mime_in' => 'Bukti pembayaran harus berformat jpg/jpeg/png!',
+            'max_size' => 'Ukuran bukti pembayaran maksimal 2MB!',
+            'is_image' => 'File yang anda pilih bukan gambar!'
+        ],
+        'foto_ktp' => [
+            'uploaded' => 'Foto KTP harus diisi!',
+            'mime_in' => 'Foto KTP harus berformat jpg/jpeg/png!',
+            'max_size' => 'Ukuran foto KTP maksimal 2MB!',
+            'is_image' => 'File yang anda pilih bukan gambar!'
+        ],
     ];
 }

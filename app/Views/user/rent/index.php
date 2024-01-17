@@ -13,46 +13,42 @@
     <section class="pt-5 flex-grow-1">
         <div class="container px-4 px-lg-5 mt-5 py-5">
             <?php if ($mobil) { ?>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
-                <?php foreach ($mobil as $key => $row) : ?>
-                <div class="col mb-5">
-                    <div class="card p-2 h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="<?= base_url('uploads/mobil/') . $row['gambar_mobil'] ?>"
-                            alt="<?= $row['nama_mobil'] ?>" />
-                        <!-- Product details-->
-                        <div class="card-body p-4 text-center">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder"><?= $row['nama_mobil'] ?></h5>
-                                <!-- Product price-->
-                                <?= format_rupiah($row['harga_sewa']) ?> / hari
-                            </div>
-                            <span
-                                class="badge <?= $row['fitur_ac'] == 'Ada' ? 'text-bg-primary' : 'text-bg-secondar' ?>">AC</span>
-                            <span
-                                class="badge <?= $row['fitur_tv'] == 'Ada' ? 'text-bg-primary' : 'text-bg-secondary' ?>">TV</span>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <?php if ($row['tersedia'] == 'Tersedia') { ?>
-                                <a class="btn btn-primary mt-auto" aria-disabled="true" href="#">Sewa</a>
-                                <?php } else { ?>
-                                <a class="btn btn-secondary disabled mt-auto">Tidak tersedia</a>
-                                <?php } ?>
-                                <a class="btn btn-outline-success mt-auto"
-                                    href="/rent/detail/<?= $row['id_mobil'] ?>">Detail</a>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                    <?php foreach ($mobil as $key => $row) : ?>
+                        <div class="col mb-5">
+                            <div class="card p-2 h-100">
+                                <!-- Product image-->
+                                <img class="card-img-top" src="<?= base_url('uploads/mobil/') . $row['gambar_mobil'] ?>" alt="<?= $row['nama_mobil'] ?>" />
+                                <!-- Product details-->
+                                <div class="card-body p-4 text-center">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder"><?= $row['nama_mobil'] ?></h5>
+                                        <!-- Product price-->
+                                        <?= format_rupiah($row['harga_sewa']) ?> / hari
+                                    </div>
+                                    <span class="badge <?= $row['fitur_ac'] == 'Ada' ? 'text-bg-primary' : 'text-bg-secondar' ?>">AC</span>
+                                    <span class="badge <?= $row['fitur_tv'] == 'Ada' ? 'text-bg-primary' : 'text-bg-secondary' ?>">TV</span>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                        <?php if ($row['tersedia'] == 'Tersedia') { ?>
+                                            <a class="btn btn-primary mt-auto" aria-disabled="true" href="/rent/form_rental/<?= $row['id_mobil'] ?>">Sewa</a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-secondary disabled mt-auto">Tidak tersedia</a>
+                                        <?php } ?>
+                                        <a class="btn btn-outline-success mt-auto" href="/rent/detail/<?= $row['id_mobil'] ?>">Detail</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-                <?php endforeach; ?>
-            </div>
             <?php } else { ?>
-            <div class="col mb-5 text-center">
-                <h2>Tidak ada mobil yang tersedia</h2>
-            </div>
+                <div class="col mb-5 text-center">
+                    <h2>Tidak ada mobil yang tersedia</h2>
+                </div>
             <?php } ?>
         </div>
     </section>

@@ -27,6 +27,11 @@
                     <span>Data Mobil</span>
                 </a>
             </li>
+            <li class="">
+                <a class="nav-link" href="/admin/master/rekening"><i class="fas fa-university"></i>
+                    <span>Data Rekening</span>
+                </a>
+            </li>
             <li class="menu-header">Sewa</li>
             <li class="">
                 <a class="nav-link" href="/admin/pemesanan"><i class="fas fa-book"></i>

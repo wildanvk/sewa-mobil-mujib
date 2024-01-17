@@ -86,7 +86,8 @@
                     </table>
                     <div class="d-flex gap-2">
                         <?php if ($mobil['tersedia'] == 'Tersedia') { ?>
-                        <a class="btn btn-primary mt-auto" aria-disabled="true" href="#">Sewa</a>
+                        <a class="btn btn-primary mt-auto" aria-disabled="true"
+                            href="/rent/form_rental/<?= $mobil['id_mobil'] ?>">Sewa</a>
                         <?php } else { ?>
                         <a class="btn btn-secondary disabled mt-auto">Tidak tersedia</a>
                         <?php } ?>

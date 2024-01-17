@@ -37,16 +37,51 @@
 
     <!-- Core theme JS-->
     <script src="<?= base_url('front') ?>/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+    <!-- Custom JS -->
+
+    <?= $this->renderSection('javascript') ?>
+
     <script>
-    <?php if (session()->getFlashdata('logout')) { ?>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil Logout',
-        text: '<?= session()->getFlashdata('logout') ?>',
-        showConfirmButton: true,
-        timer: 3000
-    })
-    <?php } ?>
+        <?php if (session()->getFlashdata('logout')) { ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil Logout',
+                text: '<?= session()->getFlashdata('logout') ?>',
+                showConfirmButton: true,
+                timer: 3000
+            })
+        <?php } ?>
+
+        <?php if (session()->getFlashdata('gagal')) { ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '<?= session()->getFlashdata('gagal') ?>',
+                showConfirmButton: true,
+                timer: 3000
+            })
+        <?php } ?>
+
+        <?php if (session()->getFlashdata('success')) { ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Transaksi Berhasil',
+                text: '<?= session()->getFlashdata('success') ?>',
+                showConfirmButton: true,
+                timer: 3000
+            })
+        <?php } ?>
+        <?php if (session()->getFlashdata('batal')) { ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Transaksi Dibatalkan',
+                text: '<?= session()->getFlashdata('batal') ?>',
+                showConfirmButton: true,
+                timer: 3000
+            })
+        <?php } ?>
     </script>
 </body>
 
