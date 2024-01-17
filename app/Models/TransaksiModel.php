@@ -23,6 +23,7 @@ class TransaksiModel extends Model
                 ->join('user', 'user.id = transaksi.id_user')
                 ->join('detail_transaksi', 'detail_transaksi.id_transaksi = transaksi.id_transaksi')
                 ->join('mobil', 'mobil.id_mobil = detail_transaksi.id_mobil')
+                ->orderBy('transaksi.created_at', 'DESC')
                 ->get()
                 ->getResultArray();
         }
