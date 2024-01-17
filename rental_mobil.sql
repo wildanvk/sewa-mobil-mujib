@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 11:56 AM
+-- Generation Time: Jan 17, 2024 at 06:41 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,6 +41,37 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama_admin`, `email`) VALUES
 (1, 'admin', 'admin', 'admin', 'admin@admin.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_transaksi`
+--
+
+CREATE TABLE `detail_transaksi` (
+  `id_detail` int(11) NOT NULL,
+  `id_transaksi` char(30) NOT NULL,
+  `id_mobil` int(11) NOT NULL,
+  `tanggal_sewa` date NOT NULL,
+  `tanggal_kembali` date NOT NULL,
+  `lama_sewa` int(11) NOT NULL,
+  `tanggal_pengembalian` date DEFAULT NULL,
+  `total_bayar` int(11) NOT NULL,
+  `total_denda` int(11) DEFAULT NULL,
+  `bukti_pembayaran` varchar(255) DEFAULT NULL,
+  `foto_ktp` varchar(255) DEFAULT NULL,
+  `status` enum('Belum Bayar','Menunggu Konfirmasi','Terkonfirmasi') NOT NULL DEFAULT 'Belum Bayar',
+  `uploaded` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `detail_transaksi`
+--
+
+INSERT INTO `detail_transaksi` (`id_detail`, `id_transaksi`, `id_mobil`, `tanggal_sewa`, `tanggal_kembali`, `lama_sewa`, `tanggal_pengembalian`, `total_bayar`, `total_denda`, `bukti_pembayaran`, `foto_ktp`, `status`, `uploaded`) VALUES
+(19, 'TRX20240116182239188', 4, '2024-01-17', '2024-01-21', 4, '2024-01-18', 1200000, 0, '1705435514_0c9bc1c05f2965e31068.png', '1705435514_8f38ecce95082d60cd25.png', 'Terkonfirmasi', 1),
+(21, 'TRX20240117163444542', 3, '2024-01-20', '2024-01-22', 2, '2024-01-18', 500000, 0, '1705509339_87e5129a178d473ed711.png', '1705509339_8728e373cdbc7353deaa.png', 'Terkonfirmasi', 1),
+(26, 'TRX20240117173501522', 4, '2024-01-21', '2024-01-25', 4, '2024-01-18', 1200000, 0, '1705512991_71ed30a328a1289bff33.png', '1705512991_d3e29f273e4813a48459.png', 'Terkonfirmasi', 1);
 
 -- --------------------------------------------------------
 
@@ -99,8 +130,52 @@ CREATE TABLE `mobil` (
 
 INSERT INTO `mobil` (`id_mobil`, `id_merek`, `id_warna`, `nama_mobil`, `plat_nomor`, `tahun`, `harga_sewa`, `denda`, `status`, `tersedia`, `fitur_ac`, `fitur_tv`, `gambar_mobil`) VALUES
 (1, 1, 1, 'Avanza', 'G 2020 FG', 2015, 200000, 50000, 'Aktif', 'Tersedia', 'Ada', 'Tidak Ada', '1700330725_8f8a6db2ccc801ef0381.jpeg'),
-(3, 1, 1, 'Yaris', 'G 2021 GH', 2019, 250000, 75000, 'Aktif', 'Tidak Tersedia', 'Ada', 'Ada', '1700413656_4ec5708c89e9ab672082.png'),
+(3, 1, 1, 'Yaris', 'G 2021 GH', 2019, 250000, 75000, 'Aktif', 'Tersedia', 'Ada', 'Ada', '1700413656_4ec5708c89e9ab672082.png'),
 (4, 14, 1, 'Xenia', 'G 2023', 2020, 300000, 75000, 'Aktif', 'Tersedia', 'Ada', 'Ada', '1700509705_f4e3acf422e99f71d7fc.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rekening`
+--
+
+CREATE TABLE `rekening` (
+  `id_rekening` int(11) NOT NULL,
+  `nama_bank` varchar(255) NOT NULL,
+  `no_rekening` varchar(255) NOT NULL,
+  `atas_nama` varchar(255) NOT NULL,
+  `status` enum('Aktif','Tidak Aktif') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rekening`
+--
+
+INSERT INTO `rekening` (`id_rekening`, `nama_bank`, `no_rekening`, `atas_nama`, `status`) VALUES
+(2, 'BRI', '165468465213654', 'Muhammad Mujibud Da\'awad', 'Aktif'),
+(3, 'BCA', '564651654651464', 'Intan Yugistira', 'Aktif');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `id_transaksi` char(30) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `status` enum('Aktif','Selesai','Batal') NOT NULL DEFAULT 'Aktif',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `status`, `created_at`) VALUES
+('TRX20240116182239188', 4, 'Selesai', '2024-01-17 01:22:39'),
+('TRX20240117163444542', 4, 'Selesai', '2024-01-17 23:34:44'),
+('TRX20240117173501522', 4, 'Selesai', '2024-01-18 00:35:01');
 
 -- --------------------------------------------------------
 
@@ -124,7 +199,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nama`, `nik`, `jenis_kelamin`, `email`, `telepon`, `alamat`, `password`) VALUES
-(3, 'Wildan Vinu Kananta', 2147483647, 'laki-laki', 'wildanvinukananta@gmail.com', '087771371419', 'JL. DHARMA BAKTI GG. 7 NO. 79B, Medono', '$2y$10$oRfuNCeHIcSHJboEcnxZceMgcqGNrUI6ab3c/UOVZtn0jwnh88M42');
+(4, 'Wildan Vinu Kananta', 2147483647, 'laki-laki', 'wildanvinukananta@gmail.com', '087771371419', 'JL. DHARMA BAKTI GG. 7 NO. 79B, Medono', '$2y$10$tV2Hmz9IK4gJ0Ci3uNGTx.qvYvdEYD4vawAAoaZqreK1/OP7ZFs.u'),
+(5, 'Mujib', 2147483647, 'laki-laki', 'mujib@gmail.com', '085150021000', 'Panjang', '$2y$10$BSMAKkVH27SJgqbx.Uyf7uHwbHizxs3/TGQ2erGrD6vojltDDNGNm');
 
 -- --------------------------------------------------------
 
@@ -160,6 +236,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
+-- Indexes for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD PRIMARY KEY (`id_detail`);
+
+--
 -- Indexes for table `merek`
 --
 ALTER TABLE `merek`
@@ -170,6 +252,18 @@ ALTER TABLE `merek`
 --
 ALTER TABLE `mobil`
   ADD PRIMARY KEY (`id_mobil`);
+
+--
+-- Indexes for table `rekening`
+--
+ALTER TABLE `rekening`
+  ADD PRIMARY KEY (`id_rekening`);
+
+--
+-- Indexes for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indexes for table `user`
@@ -194,6 +288,12 @@ ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT for table `merek`
 --
 ALTER TABLE `merek`
@@ -206,10 +306,16 @@ ALTER TABLE `mobil`
   MODIFY `id_mobil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `rekening`
+--
+ALTER TABLE `rekening`
+  MODIFY `id_rekening` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `warna`
