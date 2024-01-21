@@ -74,6 +74,12 @@ $routes->group('admin', function ($routes) {
     $routes->get('transaksi/konfirmasi/(:segment)', 'Admin\Transaksi::konfirmasiPesanan/$1');
     $routes->get('transaksi/batal/(:segment)', 'Admin\Transaksi::batalPesanan/$1');
     $routes->get('transaksi/selesai/(:segment)', 'Admin\Transaksi::selesaiPesanan/$1');
+
+    // Laporan
+    $routes->group('laporan', function ($routes) {
+        $routes->get('transaksi', 'Admin\Laporan::index');
+        $routes->post('transaksi/cetak', 'Admin\Laporan::cetak');
+    });
 });
 
 $routes->group('user', function ($routes) {

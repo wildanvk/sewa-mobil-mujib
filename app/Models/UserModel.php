@@ -23,6 +23,12 @@ class UserModel extends Model
             ->getRowArray();
     }
 
+    public function getCountUser()
+    {
+        return $this->db->table('user')
+            ->countAllResults();
+    }
+
     public function insertUser($data)
     {
         return $this->db->table($this->table)->insert($data);

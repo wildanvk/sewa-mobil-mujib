@@ -43,10 +43,10 @@
                     <span>Transaksi</span>
                 </a>
             </li>
-            <li class="menu-header">Akun</li>
+            <li class="menu-header">Laporan</li>
             <li class="">
-                <a class="nav-link" href="/admin/akun"><i class="fas fa-user"></i>
-                    <span>Kelola Akun</span>
+                <a class="nav-link" href="/admin/laporan/transaksi"><i class="fas fa-file-invoice-dollar"></i>
+                    <span>Transaksi</span>
                 </a>
             </li>
         </ul>

@@ -39,56 +39,66 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($pemesanan as $key => $row) : ?>
-                                        <tr>
-                                            <td class="text-center align-middle"><?= $key + 1 ?></td>
-                                            <td class="text-center align-middle"><?= $row['id_transaksi'] ?></td>
-                                            <td class="text-center align-middle"><?= $row['nama'] ?></td>
-                                            <td class="text-center align-middle"><?= $row['nama_mobil'] ?></td>
-                                            <td class="text-center align-middle"><?= $row['tanggal_sewa'] ?></td>
-                                            <td class="text-center align-middle"><?= $row['tanggal_kembali'] ?></td>
-                                            <td class="text-center align-middle">
-                                                <?= empty($row['tanggal_pengembalian']) ? '-' : $row['tanggal_pengembalian'] ?>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <?= format_rupiah($row['harga_sewa']) ?> / hari
-                                            </td>
-                                            <td class="text-center align-middle"><?= format_rupiah($row['denda']) ?> /
-                                                hari
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <?= empty($row['total_denda']) ? '-' : format_rupiah($row['total_denda'])  ?>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <?= format_rupiah($row['total_bayar'])  ?>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <?php if ($row['status'] === 'Belum Bayar') { ?>
-                                                    <span class="badge badge-danger"><?= $row['status'] ?></span>
-                                                <?php } elseif ($row['status'] === 'Menunggu Konfirmasi') { ?>
-                                                    <span class="badge badge-primary"><?= $row['status'] ?></span>
-                                                <?php } else { ?>
-                                                    <span class="badge badge-success"><?= $row['status'] ?></span>
-                                                <?php } ?>
-                                            </td>
-                                            <td class="align-middle">
-                                                <?php if ($row['status'] === 'Belum Bayar') { ?>
-                                                    <button type="button" class="btn btn-sm btn-icon icon-left btn-danger my-1 cancel-button" data-id="<?= $row['id_transaksi'] ?>">
-                                                        <i class="fas fa-window-close"></i>
-                                                        Batal
-                                                        </a>
-                                                    <?php } elseif ($row['status'] === 'Menunggu Konfirmasi') { ?>
-                                                        <a href="/admin/transaksi/detail/<?= $row['id_transaksi'] ?>" class="btn btn-sm btn-icon icon-left btn-success my-1">
-                                                            <i class="fas fa-clipboard-list"></i>
-                                                            Cek
-                                                        </a>
-                                                    <?php } else { ?>
-                                                        <button type="button" class="btn btn-sm btn-icon icon-left btn-primary my-1 complete-button" data-id="<?= $row['id_transaksi'] ?>">
-                                                            <i class="fas fa-check-circle"></i>
-                                                            Selesai
-                                                        </button>
-                                                    <?php  } ?>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td class="text-center align-middle"><?= $key + 1 ?></td>
+                                        <td class="text-center align-middle"><?= $row['id_transaksi'] ?></td>
+                                        <td class="text-center align-middle"><?= $row['nama'] ?></td>
+                                        <td class="text-center align-middle"><?= $row['nama_mobil'] ?></td>
+                                        <td class="text-center align-middle"><?= $row['tanggal_sewa'] ?></td>
+                                        <td class="text-center align-middle"><?= $row['tanggal_kembali'] ?></td>
+                                        <td class="text-center align-middle">
+                                            <?= empty($row['tanggal_pengembalian']) ? '-' : $row['tanggal_pengembalian'] ?>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?= format_rupiah($row['harga_sewa']) ?> / hari
+                                        </td>
+                                        <td class="text-center align-middle"><?= format_rupiah($row['denda']) ?> /
+                                            hari
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?= empty($row['total_denda']) ? '-' : format_rupiah($row['total_denda'])  ?>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?= format_rupiah($row['total_bayar'])  ?>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?php if ($row['status'] === 'Belum Bayar') { ?>
+                                            <span class="badge badge-danger"><?= $row['status'] ?></span>
+                                            <?php } elseif ($row['status'] === 'Menunggu Konfirmasi') { ?>
+                                            <span class="badge badge-primary"><?= $row['status'] ?></span>
+                                            <?php } else { ?>
+                                            <span class="badge badge-success"><?= $row['status'] ?></span>
+                                            <?php } ?>
+                                        </td>
+                                        <td class="align-middle">
+                                            <?php if ($row['status'] === 'Belum Bayar') { ?>
+                                            <button type="button"
+                                                class="btn btn-sm btn-icon icon-left btn-danger my-1 cancel-button"
+                                                data-id="<?= $row['id_transaksi'] ?>">
+                                                <i class="fas fa-window-close"></i>
+                                                Batal
+                                            </button>
+                                            <?php } elseif ($row['status'] === 'Menunggu Konfirmasi') { ?>
+                                            <a href="/admin/transaksi/detail/<?= $row['id_transaksi'] ?>"
+                                                class="btn btn-sm btn-icon icon-left btn-success my-1">
+                                                <i class="fas fa-clipboard-list"></i>
+                                                Cek
+                                            </a>
+                                            <?php } else { ?>
+                                            <button type="button"
+                                                class="btn btn-sm btn-icon icon-left btn-primary my-1 complete-button"
+                                                data-id="<?= $row['id_transaksi'] ?>">
+                                                <i class="fas fa-check-circle"></i>
+                                                Selesai
+                                            </button>
+                                            <?php  } ?>
+                                            <a href="/admin/transaksi/detail/<?= $row['id_transaksi'] ?>"
+                                                class="btn btn-sm btn-icon icon-left btn-info my-1">
+                                                <i class="fas fa-info-circle"></i>
+                                                Detail
+                                            </a>
+                                        </td>
+                                    </tr>
                                     <?php endforeach ?>
                             </table>
                         </div>
@@ -101,49 +111,49 @@
 
 <?= $this->section('javascript') ?>
 <script>
-    $(document).ready(function() {
-        $('.cancel-button').on('click', function() {
-            dialogBatalPesanan($(this).data('id'));
-        });
-
-        $('.complete-button').on('click', function() {
-            dialogSelesaiPesanan($(this).data('id'));
-        });
-
-        function dialogSelesaiPesanan(id) {
-            Swal.fire({
-                title: 'Konfirmasi',
-                text: "Apakah Anda yakin untuk menyelesaikan transaksi ini?",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, lanjutkan',
-                cancelButtonText: 'Tidak, kembali',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "/admin/transaksi/selesai/" + id
-                }
-            })
-        }
-
-        function dialogBatalPesanan(id) {
-            Swal.fire({
-                title: 'Peringatan',
-                text: "Apakah Anda yakin untuk membatalkan transaksi ini?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, lanjutkan',
-                cancelButtonText: 'Tidak, kembali',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "/admin/transaksi/batal/" + id
-                }
-            })
-        }
+$(document).ready(function() {
+    $('.cancel-button').on('click', function() {
+        dialogBatalPesanan($(this).data('id'));
     });
+
+    $('.complete-button').on('click', function() {
+        dialogSelesaiPesanan($(this).data('id'));
+    });
+
+    function dialogSelesaiPesanan(id) {
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: "Apakah Anda yakin untuk menyelesaikan transaksi ini?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, lanjutkan',
+            cancelButtonText: 'Tidak, kembali',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/admin/transaksi/selesai/" + id
+            }
+        })
+    }
+
+    function dialogBatalPesanan(id) {
+        Swal.fire({
+            title: 'Peringatan',
+            text: "Apakah Anda yakin untuk membatalkan transaksi ini?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, lanjutkan',
+            cancelButtonText: 'Tidak, kembali',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/admin/transaksi/batal/" + id
+            }
+        })
+    }
+});
 </script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>

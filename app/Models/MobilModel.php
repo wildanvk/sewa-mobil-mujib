@@ -40,6 +40,13 @@ class MobilModel extends Model
             ->getResultArray();
     }
 
+    public function getCountMobil()
+    {
+        return $this->db->table('mobil')
+            ->where(['mobil.status' => 'Aktif'])
+            ->countAllResults();
+    }
+
     public function insertMobil($data)
     {
         return $this->db->table($this->table)->insert($data);
